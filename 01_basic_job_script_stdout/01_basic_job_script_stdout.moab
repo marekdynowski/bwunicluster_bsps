@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#  01_basic_job_script_stdout.pbs 
+#  
+#
+#  Created by Marek Dynowski on 15/12/14.
+#  MOAB job script for submitting a simple job to the batch system
+#  of the bwUniCluster. This job writes out the hostname of the
+#  worker node on which it is executed
+
+
+### MOAB directives
+
+## Serial job 1 core on one node is used
+#MSUB -l nodes=1:ppn=1
+
+## Submitting into class/queue singlenode
+#MSUB -q singlenode
+
+## The maximum time the jobs takes is restricted to two minutes
+#MSUB -l walltime=00:00:05:00
+
+## Submitting into the reservation created for this course
+## (only necessary for the course)
+#MSUB -A workshop
+#MSUB -l advres=bwhpc-workshop.148
+
+cd ${MOAB_SUBMITDIR}/
+hostname
+sleep 60

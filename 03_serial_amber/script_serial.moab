@@ -1,0 +1,14 @@
+#!/bin/bash
+#MSUB -l nodes=1:ppn=1,walltime=00:00:20:00
+#MSUB -q singlenode
+#MSUB -m abe 
+##MSUB -M YOUR_EMAIL_ADDRESS
+
+### Only Today for the hands on:
+#MSUB -A workshop
+#MSUB -l advres=bwhpc-workshop.148
+
+cd ${MOAB_SUBMITDIR}/
+
+module load chem/amber
+time sander -O -i 03_Prod.in -o 03_Prod.out -p prmtop -c 02_Heat.rst -r 03_Prod.rst -x 03_Prod.mdcrd -inf 03_Prod.info 
